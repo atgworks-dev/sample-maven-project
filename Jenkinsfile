@@ -11,11 +11,11 @@ pipeline {
             }
         }
 
-        stage ('Testing Stage') {
+        stage ('Packaging Stage') {
 
             steps {
                 withMaven(maven : 'maven_4_0_0') {
-                    sh 'mvn test'
+                    sh 'mvn package'
                 }
             }
         }
@@ -23,9 +23,7 @@ pipeline {
 
         stage ('Deployment Stage') {
             steps {
-                withMaven(maven : 'maven_4_0_0') {
-                    sh 'mvn deploy'
-                }
+                java -cp target/sample-maven-project-1.0-SNAPSHOT.jar com.sampleproject.mav.App
             }
         }
     }
