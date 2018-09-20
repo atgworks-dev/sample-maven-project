@@ -36,7 +36,7 @@
         <groupId>org.atgworks.samplemaven</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <configuration>
-          <mainClass>com.sampleproject.mav.App<mainClass>
+          <mainClass>com.sampleproject.mav.App</mainClass>
         </configuration>
         </plugin>
     </plugins>
