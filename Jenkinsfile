@@ -19,12 +19,5 @@ pipeline {
                 }
             }
         }
-
-
-        stage ('Deployment Stage') {
-            steps {
-                java -cp target/sample-maven-project-1.0-SNAPSHOT.jar com.sampleproject.mav.App
-            }
-        }
     }
 }
