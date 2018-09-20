@@ -25,19 +25,19 @@
   <build>
     <plugins>
         <plugin>
-        <artifactId>maven-sample-plugin</artifactId>
-        <version>1.0.0</version>
-        <configuration>
-                <source>1.6</source>
-                <target>1.6</target>
-        </configuration>
-     </plugin>
+		<artifactId>maven-compiler-plugin</artifactId>
+		<version>2.0.2</version>
+		<configuration>
+		        <source>1.6</source>
+		        <target>1.6</target>
+		</configuration>
+       </plugin>
         <plugin>
-        <groupId>org.atgworks.samplemaven</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <configuration>
-          <mainClass>com.sampleproject.mav.App</mainClass>
-        </configuration>
+		<groupId>org.atgworks.samplemaven</groupId>
+		<artifactId>exec-maven-plugin</artifactId>
+		<configuration>
+		  <mainClass>com.sampleproject.mav.App</mainClass>
+		</configuration>
         </plugin>
     </plugins>
    </build>
