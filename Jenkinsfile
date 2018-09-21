@@ -1,23 +1,38 @@
-pipeline {
-    agent any
+node {
+	checkout scm
+	env.PATH = "${tool 'Maven3'}/bin:${env.PATH}"
+	stage('Package'){
+	 dir('webapp'){
+	  sh 'mvn clean package -DskipTests'
+	 }
+	}
 
-    stages {
-        stage ('Compile Stage') {
+	stage('Create Docker Image') {
+	 dir('webapp') {
+	  docker.build("pduong/sample-maven-project:$(env.BUILD_NUMBER)")
+	 }
+	}
+	
+	
+	stage ('Run Application') {
+	 try {
+	  sh "docker run pduong/sample-maven-project:$(env.BUILD_NUMBER)"
+	 } catch (error) {
+	 } finally {
+	    echo "DONE"
+	 }
+	}
 
-            steps {
-                withMaven(maven : 'maven_4_0_0') {
-                    sh 'mvn clean compile'
-                }
-            }
-        }
-
-        stage ('Packaging Stage') {
-
-            steps {
-                withMaven(maven : 'maven_4_0_0') {
-                    sh 'mvn package'
-                }
-            }
-        }
-    }
+	stage('Run Tests and Publish to Docker Hub') {
+	 try {
+	  dir('webapp') {
+	     sh "mvn test"
+	     docker.build("pduong/sample-maven-project:$(env.BUILD_NUMBER)").push()
+	  }
+	 } catch(error) {
+	 
+	 } finally {
+	    
+	 }
+	}
 }
