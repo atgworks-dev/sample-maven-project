@@ -50,7 +50,7 @@
 			 </executions>
 			 <configuration>
 				 <mainClass>com.sampleproject.mav.App</mainClass>
-			 </configurations>
+			 </configuration>
 		  </plugin>
 	  </plugins>
   </build>
