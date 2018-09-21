@@ -9,14 +9,14 @@ node {
 
 	stage('Create Docker Image') {
 	 dir('webapp') {
-	  docker.build("pduong/sample-maven-project:$(env.BUILD_ID)")
+	  docker.build("pduong/sample-maven-project:${env.BUILD_NUMBER}")
 	 }
 	}
 	
 	
 	stage ('Run Application') {
 	 try {
-	  sh "docker run pduong/sample-maven-project:$(env.BUILD_ID)"
+	  sh "docker run pduong/sample-maven-project:${env.BUILD_NUMBER}"
 	 } catch (error) {
 	 } finally {
 	    echo "DONE"
@@ -27,7 +27,7 @@ node {
 	 try {
 	  dir('webapp') {
 	     sh "mvn test"
-	     docker.build("pduong/sample-maven-project:$(env.BUILD_ID)").push()
+	     docker.build("pduong/sample-maven-project:${env.BUILD_NUMBER}").push()
 	  }
 	 } catch(error) {
 	 
