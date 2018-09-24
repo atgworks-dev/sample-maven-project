@@ -27,7 +27,9 @@ node {
 	 try {
 	  dir('webapp') {
 	     sh "mvn test"
-	     docker.build("pduong/sample-maven-project:${env.BUILD_NUMBER}").push("${env.BUILD_NUMBER}")
+	      docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+           	 app.push("${env.BUILD_NUMBER}")
+              }
 	  }
 	 } catch(error) {
 	 
