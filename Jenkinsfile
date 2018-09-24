@@ -27,7 +27,7 @@ node {
 	 try {
 	  dir('webapp') {
 	     sh "mvn test"
-	     docker.build("pduong/sample-maven-project:${env.BUILD_NUMBER}").push()
+	     docker.build("pduong/sample-maven-project:${env.BUILD_NUMBER}").push("${env.BUILD_NUMBER}")
 	  }
 	 } catch(error) {
 	 
