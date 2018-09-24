@@ -10,9 +10,6 @@
   <name>webapp</name>
   <url>http://maven.apache.org</url>
 
-  <properties>
-	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
   <build>
 	  <plugins>
 		  <plugin>
@@ -20,7 +17,7 @@
 			  <configuration>
 				  <archive>
 					  <manifest>
-						  <mainclass>com.sampleproject.mav.App</mainclass>
+						  <mainClass>com.sampleproject.mav.App</mainClass>
 					  </manifest>
 				  </archive>
 				  <descriptorRefs>
@@ -37,6 +34,21 @@
 				  </execution>
 			  </executions>
 		  </plugin>
+		  <plugin>
+			  <groupId>org.codehaus.mojo</groupId>
+			  <artifactId>exec-maven-plugin</artifactId>
+			  <version>1.5.0</version>
+			  <executions>
+				  <execution>
+					  <goals>
+						  <goal>java</goal>
+					  </goals>
+				  </execution>
+			  </executions>
+                          <configuration>
+				  <mainClass>com.sampleproject.mav.App</mainClass>
+                          </configuration>
+                  </plugin>
 	  </plugins>
   </build>
   <dependencies>
